@@ -1,116 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criptografia no PHP</title>
 </head>
 
 <body>
     <header>
         <h1>Criptografia no PHP</h1>
-        <p>Conheça alguns tipos de criptografia e recursos de segurança disponíveis no PHP.</p>
+        <p>Conheça e teste alguns recursos de criptografia disponíveis no PHP.</p>
     </header>
 
     <hr>
 
-    <p>Clique em um tópico para ler sobre ele.</p>
+    <p>Clique em um tópico para ler sobre ele e fazer um teste.</p>
 
     <details>
         <summary>Criptografia simétrica</summary>
+        <p>Usa a mesma chave para criptografar e descriptografar uma informação.</p>
+        <p>Exemplo: AES-256-CBC.</p>
 
-        <p>
-            A criptografia simétrica utiliza uma única chave para proteger e
-            recuperar uma informação.
-        </p>
+        <form action="demonstracao.php" method="POST">
+            <input type="hidden" name="tipo" value="simetrica">
 
-        <p>
-            A mesma chave que criptografa o conteúdo é usada para descriptografá-lo.
-            Ela é rápida e indicada para dados que o sistema precisa ler novamente,
-            como informações confidenciais no banco de dados.
-        </p>
-
-        <p>Exemplos: AES e ChaCha20.</p>
+            <label>Digite um texto:</label><br>
+            <input type="text" name="texto" required>
+            <button type="submit">Criptografar</button>
+        </form>
     </details>
 
     <details>
         <summary>Criptografia assimétrica</summary>
-
-        <p>
-            Usa duas chaves relacionadas: uma chave pública e uma chave privada.
-            A chave pública pode ser compartilhada, mas a chave privada deve ficar protegida.
-        </p>
-
-        <p>
-            Uma mensagem criptografada com a chave pública só pode ser aberta pela
-            chave privada correspondente. É usada em certificados digitais, HTTPS e
-            troca segura de informações.
-        </p>
-
+        <p>Usa uma chave pública para criptografar e uma chave privada para descriptografar.</p>
         <p>Exemplo: RSA.</p>
+
+        <form action="demonstracao.php" method="POST">
+            <input type="hidden" name="tipo" value="assimetrica">
+
+            <label>Digite um texto curto:</label><br>
+            <input type="text" name="texto" required>
+            <button type="submit">Testar RSA</button>
+        </form>
     </details>
 
     <details>
         <summary>Hash criptográfico</summary>
+        <p>Transforma um texto em uma sequência que não pode ser revertida.</p>
+        <p>Exemplo: SHA-256.</p>
 
-        <p>
-            Transforma uma informação em uma sequência de caracteres de tamanho fixo.
-            Esse resultado não deve ser revertido para o texto original.
-        </p>
+        <form action="demonstracao.php" method="POST">
+            <input type="hidden" name="tipo" value="hash">
 
-        <p>
-            É usado para verificar a integridade de uma informação. Se um arquivo ou
-            mensagem for alterado, o seu hash também será diferente.
-        </p>
-
-        <p>Exemplos: SHA-256 e SHA-512.</p>
+            <label>Digite um texto:</label><br>
+            <input type="text" name="texto" required>
+            <button type="submit">Gerar hash</button>
+        </form>
     </details>
 
     <details>
         <summary>Hash de senhas</summary>
-
-        <p>
-            É usado para guardar senhas com segurança, sem salvar a senha original
-            no banco de dados.
-        </p>
-
-        <p>
-            Quando o usuário faz login, o sistema compara a senha digitada com o hash
-            armazenado. Isso ajuda a proteger os dados mesmo se o banco de dados for
-            acessado indevidamente.
-        </p>
-
+        <p>É usado para guardar senhas com segurança, sem salvar a senha original.</p>
         <p>Exemplos: bcrypt, Argon2i e Argon2id.</p>
+
+        <form action="demonstracao.php" method="POST">
+            <input type="hidden" name="tipo" value="senha">
+
+            <label>Digite uma senha de teste:</label><br>
+            <input type="password" name="texto" required>
+            <button type="submit">Gerar hash da senha</button>
+        </form>
     </details>
 
     <details>
         <summary>Assinatura digital</summary>
+        <p>Confirma quem enviou uma mensagem e verifica se ela foi alterada.</p>
 
-        <p>
-            A assinatura digital não é usada para esconder uma mensagem. Ela confirma
-            quem enviou a informação e verifica se o conteúdo foi alterado.
-        </p>
+        <form action="demonstracao.php" method="POST">
+            <input type="hidden" name="tipo" value="assinatura">
 
-        <p>
-            Ela usa uma chave privada para criar a assinatura e uma chave pública
-            para verificá-la. É comum em documentos eletrônicos e contratos digitais.
-        </p>
+            <label>Digite uma mensagem:</label><br>
+            <input type="text" name="texto" required>
+            <button type="submit">Assinar e verificar</button>
+        </form>
     </details>
 
     <details>
         <summary>Números aleatórios seguros</summary>
+        <p>São usados para criar tokens, chaves e códigos de confirmação seguros.</p>
 
-        <p>
-            São usados para criar tokens, chaves, códigos de confirmação e links de
-            recuperação de senha seguros.
-        </p>
+        <form action="demonstracao.php" method="POST">
+            <input type="hidden" name="tipo" value="aleatorio">
+            <input type="hidden" name="texto" value="token">
 
-        <p>
-            Esses valores devem ser difíceis de adivinhar, pois números previsíveis
-            podem causar falhas de segurança em um sistema.
-        </p>
+            <button type="submit">Gerar token</button>
+        </form>
     </details>
 
-
+   
 </body>
 </html>
